@@ -1,0 +1,34 @@
+.btn
+  +border-radius(5px)
+  display: block
+  padding: 4px 8px
+  text-align: center
+  border: none
+
+.btn--default
+  color: $color-medium-gray-dark
+  background-color: white
+  border: 1px solid $color-light-gray-dark
+
+.btn--mint
+  color: white
+  background-color: $color-mint-light
+
+.btn-group
+  .btn
+    display: inline-block
+    +border-radius(0)
+
+    &:first-child
+      +border-left-radius(5px)
+
+    &:last-child
+      +border-right-radius(5px)
+
+  .btn--default
+    &:not(:last-child)
+      border-right: 1px solid $color-light-gray-dark
+
+  .btn--mint
+    &:not(:last-child)
+      border-right: 1px solid $color-mint-dark

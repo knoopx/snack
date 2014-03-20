@@ -1,0 +1,21 @@
+.box
+  +display-box
+
+.box--h
+  +box-orient(horizontal)
+
+.box--v
+  +box-orient(vertical)
+
+.box--align-center
+  align-items: center
+
+.box--gutters
+  margin-left: -10px
+
+  > [class^="flex--"]
+    padding-left: 10px
+
+@for $i from 0 through 10
+  .flex--#{$i}
+    +box-flex($i)

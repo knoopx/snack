@@ -1,0 +1,37 @@
+.entries
+  +vertical-list
+  overflow-y: auto
+  -webkit-overflow-scrolling: touch
+
+.entry
+  padding: 10px
+
+  .entry-header
+    +display-box
+    color: $text-muted
+    font-size: $font-size-small
+
+    .entry-header-feed
+      +box-flex(1)
+    .entry-header-date
+      +box-flex(1)
+      text-align: right
+
+  .entry-title
+    font-weight: bold
+
+  .entry-excerpt
+    font-size: $font-size-small
+    line-height: $font-size-small * 1.5
+    color: $text-muted
+    +display-box
+    +box-orient(vertical)
+    -webkit-line-clamp: 2
+    overflow: hidden
+
+  &.active
+    background-color: $component-active-bg
+    *
+      color: white
+
+  border-bottom: 1px solid #eee

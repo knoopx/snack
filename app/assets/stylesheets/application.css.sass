@@ -1,0 +1,36 @@
+@import normalize-css/normalize
+@import breakpoint
+@import font-awesome
+@import highlightjs/monokai_sublime
+@import compass/css3
+@import compass/utilities
+@import compass/typography
+@import variables
+@import mixins
+@import components/*
+
++establish-baseline
+
+*
+  +box-sizing(content-box)
+
+html, body
+  height: 100%
+
+body
+  font-family: "Lucida Grande"
+  margin: 0
+  padding: 0
+  overflow: hidden
+
+.sidebar
+  max-width: 25%
+
+  +breakpoint($breakpoint-xs)
+    display: none
+
+.content
+  overflow-y: scroll
+
+a
+  color: $link-color

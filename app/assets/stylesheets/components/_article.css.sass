@@ -1,0 +1,50 @@
+.article-container
+  overflow-y: auto
+  overflow-x: hidden
+  -webkit-overflow-scrolling: touch
+  border-left: 1px solid $component-border-color
+
+  .article
+    margin: 0 auto
+    padding: 0 40px
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif
+    color: $color-dark-gray-dark
+    line-height: 1.5
+
+    img, pre
+      max-width: 100%
+
+    pre
+      overflow-x: scroll
+
+
+    blockquote
+      position: relative
+      border-left: 10px solid $color-light-gray-light
+      padding-left: 20px
+
+      //&::before
+        content: "\201C"
+        font-size: 90px
+        font-weight: bold
+        color: $color-medium-gray-dark
+        position: absolute
+        left: -60px
+        top: -20px
+
+    +breakpoint($breakpoint-lg)
+      max-width: 960px
+
+  .article__title
+    +trailer(0)
+
+  .article__meta
+    +trailer(2)
+    color: $color-medium-gray-dark
+    border-top: 1px solid $color-light-gray-light
+    padding-top: 0.5em
+
+  .article__body
+    font-size: 22px
+    +breakpoint($breakpoint-xs)
+      font-size: 16px

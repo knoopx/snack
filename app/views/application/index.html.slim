@@ -1,0 +1,69 @@
+doctype html
+html ng-app="snack" ng-controller="mainCtrl"
+  head
+    title Snack
+    meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"
+    meta name="apple-mobile-web-app-capable" content="yes"
+    meta name="apple-mobile-web-app-status-bar-style" content="black"
+    meta name="apple-mobile-web-app-title" content="Snack"
+
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+body.box.box--h
+  .sidebar.box.box--v ng-controller="sidebarCtrl"
+    .header.header--mint.box.box--h.box--gutters
+      .flex--1
+        button.btn.btn--mint
+          | All Feeds
+
+      .flex--0
+        .btn-group.btn-group--mint
+          .btn.btn--mint ng-click=""
+            i.fa.fa-plus
+
+          .btn.btn--mint ng-click=""
+            i.fa.fa-cog
+
+    ul.entries.flex--1 ng-if="entries.length" ng-controller="entriesCtrl"
+      li.media.entry tabindex="-1" id="entry-{{entry.id}}" ng-controller="entryCtrl" ng-repeat="entry in entries" ng-class="{active: entry == selected }" ng-click="select(entry)"
+        .media-figure
+          img.favicon.favicon--24 ng-src="http://www.google.com/s2/favicons?domain={{entry.feed.url}}"
+
+        .media-body
+          .entry-header
+            .entry-header-feed ng-bind="entry.feed.name"
+            .entry-header-date am-time-ago="entry.created_at"
+
+          .entry-title ng-bind="entry.title"
+          .entry-excerpt ng-bind="entry.excerpt" ng-if="entry.excerpt"
+
+      span ng-if="!entries.length"
+        em.text--muted No entries
+
+  .content.box.box--v.flex--1 ng-if="selected"
+    .header.header--mint.box.box--h
+      .flex--1.header__text
+        img.favicon.favicon--18 style="margin-right:10px" ng-src="http://www.google.com/s2/favicons?domain={{selected.feed.url}}"
+        strong ng-bind="selected.feed.name"
+
+      .flex--1.text--right
+        .btn-group.btn-group--mint
+          a.btn.btn--mint href="{{selected.url}}"
+            i.fa.fa-share
+
+          .btn.btn--mint ng-click=""
+            i.fa.fa-star-o
+
+          .btn.btn--mint ng-click=""
+            i.fa.fa-circle-o
+
+    .flex--1.article-container hm-swipeleft="nextEntry()" hm-swiperight="previousEntry()"
+      .article ng-controller="articleCtrl"
+        h1.article__title ng-bind="selected.title"
+        .article__meta.box.box--h
+          .flex--1 ng-bind="selected.author" ng-if="selected.author"
+          .flex--1.text--right am-time-ago="selected.created_at"
+
+        .article__body ng-bind-html="htmlSafe(selected.body)"
